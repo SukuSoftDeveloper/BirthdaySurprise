@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎈 Interactive Birthday Fun!</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-page4">
+
+  <div class="hearts-container"></div>
+  <div class="page-progress"></div>
+
+  <div class="page-wrapper">
+    <div class="text-center mb-3">
+      <h1 class="display-title" data-aos="fade-down">Pop the Balloons! 🎈</h1>
+      <p class="subtitle" data-aos="fade-up">Each balloon hides a secret message for you</p>
+    </div>
+
+    <div class="balloons-area" id="balloons-area"></div>
+
+    <div class="text-center mt-2">
+      <p class="subtitle mb-2" id="pop-count">Pop all 6 balloons! 🎯</p>
+    </div>
+
+    <div class="scratch-card d-none" id="scratch-section">
+      <div class="scratch-reveal">
+        🎁 Your Birthday Gift:<br>
+        Unlimited Hugs & Pizza Nights! 🍕
+      </div>
+      <canvas class="scratch-canvas" id="scratch-canvas"></canvas>
+    </div>
+
+    <div class="text-center mt-3 d-none" id="scratch-hint">
+      <p class="subtitle mb-0">👆 Click and drag to scratch the card!</p>
+    </div>
+
+    <div class="text-center mt-4 d-none" id="final-btn-section">
+      <button class="btn-magic" id="next-btn">
+        The Grand Finale Awaits! 🎆
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/page4.js"></script>
+</body>
+</html>

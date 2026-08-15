@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎂 Happy Birthday, Bestie!</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-page5">
+
+  <canvas id="fireworks-canvas"></canvas>
+  <div class="hearts-container"></div>
+  <div class="page-progress"></div>
+
+  <div class="music-player">
+    <div class="music-tracks">
+      <button class="music-track-btn active" data-track="celebration" type="button">🎆 Celebration</button>
+      <button class="music-track-btn" data-track="song" type="button">🎵 Birthday Song</button>
+    </div>
+    <div class="music-player-controls">
+      <button class="music-btn" id="music-btn" title="Play / Pause" type="button">
+        <i class="fas fa-play"></i>
+      </button>
+      <span class="music-label">🎆 Celebration Sounds</span>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="text-center">
+      <div class="cake-container" data-aos="zoom-in">
+        <div class="birthday-cake">🎂</div>
+      </div>
+
+      <h1 class="final-message text-glow" data-aos="fade-up" data-aos-delay="300">
+        Happy Birthday,<br>
+        <span id="friend-name">My Amazing Best Friend</span>! 🎉
+      </h1>
+
+      <p class="subtitle mb-4" data-aos="fade-up" data-aos-delay="500">
+        May this year bring you endless joy, success, and beautiful moments ✨
+      </p>
+
+      <div class="countdown-box" data-aos="fade-up" data-aos-delay="700">
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-label">Hours of Fun</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">00</span>
+          <span class="countdown-label">Minutes of Joy</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">00</span>
+          <span class="countdown-label">Seconds of Love</span>
+        </div>
+      </div>
+
+      <ul class="wish-list" data-aos="fade-up" data-aos-delay="900">
+        <li>🌈 May all your dreams come true</li>
+        <li>💪 Stay strong, stay beautiful</li>
+        <li>🎯 Chase every goal fearlessly</li>
+        <li>💕 Always remember — you are loved</li>
+        <li>🎊 Let's celebrate YOU today!</li>
+      </ul>
+
+      <div class="glass-card mt-4 mx-auto" style="max-width: 500px;" data-aos="fade-up" data-aos-delay="1100">
+        <p class="subtitle mb-3" style="font-family: var(--font-display); font-size: 1.8rem;">
+          "Friendship is the only cement that will ever hold the world together."
+        </p>
+        <p class="subtitle" style="opacity: 0.7;">— With all my love, Your Best Friend 💖</p>
+      </div>
+
+      <button class="btn-magic mt-5" id="celebrate-btn" data-aos="fade-up" data-aos-delay="1300">
+        🎆 Celebrate!
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/celebration-audio.js"></script>
+  <script src="js/page5.js"></script>
+</body>
+</html>

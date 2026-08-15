@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📸 Our Beautiful Memories</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-page2">
+
+  <div class="hearts-container"></div>
+  <div class="page-progress"></div>
+
+  <div class="page-wrapper">
+    <div class="text-center mb-4">
+      <h1 class="display-title" data-aos="fade-down">Our Memories 💫</h1>
+      <p class="subtitle" data-aos="fade-up" data-aos-delay="200">
+        Every moment with you is a treasure
+      </p>
+    </div>
+
+    <div class="gallery-grid" id="gallery">
+      <div class="polaroid" data-aos="flip-left" data-aos-delay="100" style="--rotate: -3deg;">
+        <img src="assets/images/photo1.jpg" alt="Memory 1" onerror="this.src='assets/images/placeholder1.svg'">
+        <p class="polaroid-caption">Best day ever! 🌟</p>
+      </div>
+      <div class="polaroid" data-aos="flip-left" data-aos-delay="300" style="--rotate: 2deg;">
+        <img src="assets/images/photo2.jpg" alt="Memory 2" onerror="this.src='assets/images/placeholder2.svg'">
+        <p class="polaroid-caption">Laughing together 😂</p>
+      </div>
+      <div class="polaroid" data-aos="flip-left" data-aos-delay="500" style="--rotate: -1deg;">
+        <img src="assets/images/photo3.jpg" alt="Memory 3" onerror="this.src='assets/images/placeholder3.svg'">
+        <p class="polaroid-caption">Adventures! 🌍</p>
+      </div>
+      <div class="polaroid" data-aos="flip-left" data-aos-delay="700" style="--rotate: 4deg;">
+        <img src="assets/images/photo4.jpg" alt="Memory 4" onerror="this.src='assets/images/placeholder4.svg'">
+        <p class="polaroid-caption">Forever friends 💕</p>
+      </div>
+      <div class="polaroid" data-aos="flip-left" data-aos-delay="900" style="--rotate: -2deg;">
+        <img src="assets/images/photo5.jpg" alt="Memory 5" onerror="this.src='assets/images/placeholder5.svg'">
+        <p class="polaroid-caption">Unforgettable ✨</p>
+      </div>
+      <div class="polaroid" data-aos="flip-left" data-aos-delay="1100" style="--rotate: 1deg;">
+        <img src="assets/images/photo6.jpg" alt="Memory 6" onerror="this.src='assets/images/placeholder6.svg'">
+        <p class="polaroid-caption">My favorite person 💖</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="1300">
+      <p class="subtitle mb-4">These memories are just the beginning...</p>
+      <button class="btn-magic" id="next-btn">
+        Read My Message For You 💌
+      </button>
+    </div>
+  </div>
+
+  <div class="modal fade" id="photoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body text-center p-0">
+          <img id="modal-img" src="" alt="Memory" class="img-fluid rounded-4 shadow-lg" style="max-height: 80vh;">
+          <p id="modal-caption" class="subtitle mt-3"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/page2.js"></script>
+</body>
+</html>
