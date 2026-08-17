@@ -57,8 +57,8 @@ const BIRTHDAY_CONFIG = {
       '🎯 I hope you find people who understand you, support you, and genuinely want to see you do wel',
       '😄 And obviously... I hope you get plenty of Chicken Biryani too. No birthday is complete without that! 🍗🍚'
     ],
-    quote: '"Friendship is the only cement that will ever hold the world together."',
-    signature: '� With all my love, Your Best Friend ??'
+    quote: '"Happy Birthday once again Sravya🌷"',
+    signature: '— Just a friend wishing you well ✨'
   },
 
   music: 'assets/music/birthday-song.mp3',
