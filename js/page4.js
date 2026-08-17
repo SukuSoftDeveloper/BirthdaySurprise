@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
   AOS.init({ duration: 800, once: true });
 
   const balloonMessages = [
-    'You are loved! 💕',
-    'Best friend forever! 🤝',
+    '🎈 Keep that smile, it suits you 😊',
+    '🎈 Never stop dreaming big. ✨',
     'Stay awesome! ⭐',
-    'You glow differently! ✨',
+    '🎈 More happy days are waiting for you! 🌸',
     'Party time! 🎉',
     'Birthday queen! 👑'
   ];

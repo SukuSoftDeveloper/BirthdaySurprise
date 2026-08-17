@@ -6,12 +6,12 @@ const BIRTHDAY_CONFIG = {
   friendName: 'My Amazing Best Friend',
 
   page1: {
-    greeting: 'Hey Bestie! ??',
-    subtitle: 'Someone made something special for your birthday...'
+    greeting: 'Hello, Birthday Girl! 🎂✨',
+    subtitle: 'There’s a little surprise waiting inside. Tap the gift to find out! 🎁'
   },
 
   page2: {
-    title: 'Our Memories ??',
+    title: 'A Little Collection of Her ✨',
     subtitle: 'Every moment with you is a treasure',
     photos: [
       { src: 'assets/images/photo1.jpg', caption: 'Best day ever! ??' },
@@ -24,22 +24,22 @@ const BIRTHDAY_CONFIG = {
   },
 
   page3: {
-    typewriterMessages: [
-      'Dear Best Friend,',
-      'Happy Birthday! ??',
-      'You mean the world to me...'
-    ],
+  typewriterMessages: [
+    'Hey Sravya! 🎂',
+    'Happy Birthday to you! ✨',
+    'Keep smiling, keep dreaming, and keep being you. 🌷'
+  ],
     letterMessages: [
       '?? You are the most amazing person I know. Your smile lights up every room, and your kindness touches everyone around you.',
       '?? Thank you for being my partner in crime, my shoulder to cry on, and my biggest cheerleader. Life is infinitely better with you in it.',
-      '?? On your special day, I want you to know � you deserve all the happiness, love, and magic this world has to offer.',
+      '?? On your special day, I want you to know � you deserve all the happiness, love, and magic this world has to offer.',
       '?? Here\'s to another year of adventures, laughter, late-night talks, and creating memories that\'ll last forever!'
     ]
   },
 
   page4: {
     balloonMessages: [
-      'You are loved! ??',
+      '🎈 Keep that smile, it suits you 😊',
       'Best friend forever! ??',
       'Stay awesome! ?',
       'You glow differently! ?',
@@ -51,14 +51,14 @@ const BIRTHDAY_CONFIG = {
 
   page5: {
     wishes: [
-      '?? May all your dreams come true',
-      '?? Stay strong, stay beautiful',
-      '?? Chase every goal fearlessly',
-      '?? Always remember � you are loved',
-      '?? Let\'s celebrate YOU today!'
+      '🌈 May the things you dream about slowly become reality.',
+      '✨ May you always have reasons to smile.',
+      '🌷 May you keep your kind heart and your beautiful way of seeing the little things.',
+      '🎯 I hope you find people who understand you, support you, and genuinely want to see you do wel',
+      '😄 And obviously... I hope you get plenty of Chicken Biryani too. No birthday is complete without that! 🍗🍚'
     ],
     quote: '"Friendship is the only cement that will ever hold the world together."',
-    signature: '� With all my love, Your Best Friend ??'
+    signature: '� With all my love, Your Best Friend ??'
   },
 
   music: 'assets/music/birthday-song.mp3',

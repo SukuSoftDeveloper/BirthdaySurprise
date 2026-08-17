@@ -8,10 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let opened = false;
 
   const messages = [
-    'Dear Best Friend,',
-    'Happy Birthday! 🎉',
-    'You mean the world to me...'
+    'Hey Sravya!',
+    'Happy Birthday 🎂✨',
+    'Keep smiling, keep dreaming, and keep being you.✨'
   ];
+
 
   envelope.addEventListener('click', () => {
     if (opened) return;
