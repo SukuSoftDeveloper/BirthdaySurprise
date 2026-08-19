@@ -28,11 +28,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const hiddenMsg = document.createElement('div');
     hiddenMsg.className = 'hidden-message';
     hiddenMsg.textContent = msg;
-    hiddenMsg.style.left = balloon.style.left;
-    hiddenMsg.style.top = (parseFloat(balloon.style.top) + 15) + '%';
+    // we'll compute pixel positions for the message when the balloon is popped
+    hiddenMsg.style.left = '0px';
+    hiddenMsg.style.top = '0px';
 
     balloon.addEventListener('click', () => {
       if (balloon.classList.contains('popped')) return;
+      // compute position for the revealed message to avoid overlap
+      const areaRect = area.getBoundingClientRect();
+      const bRect = balloon.getBoundingClientRect();
+      const msgWidth = 220; // desired width for message area
+      // desired left: center align under balloon within area
+      let left = bRect.left - areaRect.left + (bRect.width / 2) - (msgWidth / 2);
+      // clamp inside area
+      left = Math.max(6, Math.min(left, areaRect.width - msgWidth - 6));
+
+      // place message and avoid overlapping with already-visible messages
+      const baseTop = bRect.top - areaRect.top + bRect.height + 8; // start below balloon
+      hiddenMsg.style.width = msgWidth + 'px';
+      // measure actual message height without showing it visibly
+      hiddenMsg.style.visibility = 'hidden';
+      hiddenMsg.classList.add('show');
+      const measured = hiddenMsg.getBoundingClientRect();
+      const msgHeight = Math.max(28, measured.height || 36);
+      hiddenMsg.classList.remove('show');
+      hiddenMsg.style.visibility = '';
+
+      // helper to get rect relative to area
+      const rectForEl = (el) => {
+        const r = el.getBoundingClientRect();
+        return {
+          l: r.left - areaRect.left,
+          t: r.top - areaRect.top,
+          r: r.right - areaRect.left,
+          b: r.bottom - areaRect.top
+        };
+      };
+
+      const rectIntersects = (a, b) => !(a.r <= b.l || a.l >= b.r || a.b <= b.t || a.t >= b.b);
+
+      let top = baseTop;
+      const visible = Array.from(area.querySelectorAll('.hidden-message.show'));
+      let attempts = 0;
+      while (attempts < 20) {
+        const newRect = { l: left, t: top, r: left + msgWidth, b: top + msgHeight };
+        const collision = visible.some(v => rectIntersects(newRect, rectForEl(v)));
+        if (!collision) break;
+        top += msgHeight + 8; // move down to avoid collision
+        // if moving down goes out of area, try stacking upward
+        if (top + msgHeight > areaRect.height - 8) {
+          let upTop = baseTop - msgHeight - 8;
+          while (upTop > 6) {
+            const upRect = { l: left, t: upTop, r: left + msgWidth, b: upTop + msgHeight };
+            const collUp = visible.some(v => rectIntersects(upRect, rectForEl(v)));
+            if (!collUp) { top = upTop; break; }
+            upTop -= msgHeight + 8;
+          }
+          break;
+        }
+        attempts++;
+      }
+
+      // clamp left/top within area
+      left = Math.max(6, Math.min(left, areaRect.width - msgWidth - 6));
+      top = Math.max(6, Math.min(top, areaRect.height - msgHeight - 6));
+
+      hiddenMsg.style.left = left + 'px';
+      hiddenMsg.style.top = top + 'px';
+      // play pop sound
+      if (typeof playPopSound === 'function') playPopSound();
       balloon.classList.add('popped');
       hiddenMsg.classList.add('show');
       poppedCount++;
@@ -219,6 +283,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.getElementById('next-btn').addEventListener('click', () => {
+    try {
+      sessionStorage.setItem('fromPage4To5', '1');
+    } catch (e) {
+      // ignore storage errors
+    }
     navigateWithTransition('page5.html', '🎆 The Grand Finale!');
   });
 });

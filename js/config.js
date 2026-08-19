@@ -3,7 +3,7 @@
  * Change these values before sharing with your friend.
  */
 const BIRTHDAY_CONFIG = {
-  friendName: 'My Amazing Best Friend',
+  friendName: 'My Amazing Friend',
 
   page1: {
     greeting: 'Hello, Birthday Girl! 🎂✨',

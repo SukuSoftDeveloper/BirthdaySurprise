@@ -1,5 +1,5 @@
 /**
- * Built-in celebration soundscape ù crackers, rockets, sparkles & soft festive melody.
+ * Built-in celebration soundscape ÔøΩ crackers, rockets, sparkles & soft festive melody.
  * Uses Web Audio API (no external file needed).
  */
 class CelebrationAudio {
@@ -223,17 +223,25 @@ function initDualMusicPlayer(options = {}) {
     celebrationLabel = '?? Celebration Sounds',
     songLabel = '?? Birthday Song',
     songSrc = 'assets/music/birthday-song.mp3',
-    defaultTrack = 'celebration'
+    defaultTrack = 'celebration',
+    disableCelebration = false
   } = options;
 
   const player = document.querySelector('.music-player');
   if (!player) return null;
 
   const playBtn = player.querySelector('#music-btn');
-  const trackBtns = player.querySelectorAll('.music-track-btn');
   const labelEl = player.querySelector('.music-label');
 
-  const celebration = new CelebrationAudio();
+  // If the celebration track is disabled, remove its button from the UI
+  if (disableCelebration) {
+    const cBtn = player.querySelector('.music-track-btn[data-track="celebration"]');
+    if (cBtn) cBtn.remove();
+  }
+
+  const trackBtns = player.querySelectorAll('.music-track-btn');
+
+  const celebration = disableCelebration ? null : new CelebrationAudio();
   const songAudio = new Audio(songSrc);
   songAudio.loop = true;
   songAudio.volume = 0.7;
@@ -250,7 +258,7 @@ function initDualMusicPlayer(options = {}) {
   }
 
   function stopAll() {
-    celebration.stop();
+    if (celebration) celebration.stop();
     songAudio.pause();
     playing = false;
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
@@ -258,11 +266,11 @@ function initDualMusicPlayer(options = {}) {
   }
 
   async function playActive() {
-    if (activeTrack === 'celebration') {
+    if (activeTrack === 'celebration' && celebration) {
       songAudio.pause();
       await celebration.start();
     } else {
-      celebration.stop();
+      if (celebration) celebration.stop();
       try {
         await songAudio.play();
       } catch (_) {}

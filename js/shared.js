@@ -120,3 +120,57 @@ function createSparkles(container, count = 20) {
 document.addEventListener('DOMContentLoaded', () => {
   createFloatingHearts();
 });
+
+// Shared lightweight Web Audio helpers for small sound effects (pop, click, etc.)
+;(function() {
+  let _ctx = null;
+  let _master = null;
+
+  function ensureAudio() {
+    if (_ctx) return _ctx;
+    _ctx = new (window.AudioContext || window.webkitAudioContext)();
+    _master = _ctx.createGain();
+    _master.gain.value = 0.9;
+    _master.connect(_ctx.destination);
+    return _ctx;
+  }
+
+  // Play a short pop burst (suitable for balloon popping)
+  window.playPopSound = function playPopSound() {
+    const ctx = ensureAudio();
+    if (ctx.state === 'suspended') {
+      try { ctx.resume(); } catch (_) {}
+    }
+
+    const now = ctx.currentTime;
+    const length = 0.06; // seconds
+
+    // White noise buffer
+    const bufferSize = ctx.sampleRate * length;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      // decaying noise
+      data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+    }
+
+    const src = ctx.createBufferSource();
+    src.buffer = buffer;
+
+    const hp = ctx.createBiquadFilter();
+    hp.type = 'highpass';
+    hp.frequency.value = 800 + Math.random() * 1200;
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.6 + Math.random() * 0.2, now + 0.005);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + length);
+
+    src.connect(hp);
+    hp.connect(gain);
+    gain.connect(_master);
+
+    src.start(now);
+    src.stop(now + length + 0.02);
+  };
+})();
