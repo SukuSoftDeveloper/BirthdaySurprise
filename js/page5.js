@@ -132,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } catch (e) {}
   // start photo slideshow for the birthday photo
-  createBulbBorderIfFromPage4();
   initPhotoSlideshow();
 });
 
