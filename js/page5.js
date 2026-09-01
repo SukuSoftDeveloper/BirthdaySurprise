@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     songSrc: (typeof BIRTHDAY_CONFIG !== 'undefined' && BIRTHDAY_CONFIG.music)
       ? BIRTHDAY_CONFIG.music
       : 'assets/music/birthday-song.mp3',
-    celebrationLabel: '🎆 Celebration Sounds',
-    songLabel: '🎵 Birthday Song'
+    celebrationLabel: '🎆 Celebration',
+    songLabel: '🎵 Play your Fav'
   };
 
   // disable built-in celebration soundscape for this page

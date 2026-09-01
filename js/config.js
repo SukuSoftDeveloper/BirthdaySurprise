@@ -25,8 +25,8 @@ const BIRTHDAY_CONFIG = {
 
   page3: {
   typewriterMessages: [
-    'Hey Sravya! 🎂',
-    'Happy Birthday to you! ✨',
+    'Hey Sravya 🎂',
+    'Happy Birthday to you ✨',
     'Keep smiling, keep dreaming, and keep being you. 🌷'
   ],
     letterMessages: [
