@@ -23,6 +23,13 @@ function navigateWithTransition(url, message = '✨') {
   overlay.innerHTML = `<span class="transition-text">${message}</span>`;
   document.body.appendChild(overlay);
 
+  // store where we're navigating from so target pages can attempt autoplay
+  try {
+    sessionStorage.setItem('navigatedFrom', window.location.pathname || location.pathname);
+  } catch (e) {
+    // ignore storage errors
+  }
+
   setTimeout(() => {
     window.location.href = url;
   }, 800);

@@ -13,6 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
     'Keep smiling, keep dreaming, and keep being you.✨'
   ];
 
+  // typing sound (place a short keyboard click sound at assets/sounds/typing.mp3)
+  let typingAudio = null;
+  try {
+    typingAudio = new Audio('assets/sounds/typing.mp3');
+    typingAudio.preload = 'auto';
+    typingAudio.volume = 0.7;
+  } catch (e) {
+    typingAudio = null;
+  }
+
 
   envelope.addEventListener('click', () => {
     if (opened) return;
@@ -42,6 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const current = messages[msgIndex];
       if (charIndex < current.length) {
         typedEl.textContent += current.charAt(charIndex);
+        // play typing sound for this character (best effort)
+        try {
+          if (typingAudio) {
+            // clone so overlapping sounds can play
+            const s = typingAudio.cloneNode();
+            // slight random speed for natural feel
+            try { s.playbackRate = 0.92 + Math.random() * 0.16; } catch (e) {}
+            s.volume = 0.65 + Math.random() * 0.25;
+            s.play().catch(() => {});
+          }
+        } catch (e) {}
+
         charIndex++;
         setTimeout(typeChar, 60);
       } else {

@@ -79,8 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 2000);
 
   document.getElementById('celebrate-btn').addEventListener('click', () => {
+    // placeholder - replaced by triggerCelebrate
+    triggerCelebrate();
+  });
+
+  // extract celebrate action so it can be invoked programmatically
+  function triggerCelebrate() {
     if (musicPlayer && musicPlayer.celebration) {
-      musicPlayer.celebration.burst();
+      try { musicPlayer.celebration.burst(); } catch (e) {}
     }
 
     launchConfettiBurst();
@@ -102,7 +108,29 @@ document.addEventListener('DOMContentLoaded', () => {
       repeat: 3,
       duration: 0.3
     });
-  });
+  }
+
+  // Automatically play the celebration animation after 10 seconds,
+  // but keep the button available for manual clicks.
+  try {
+    const celebrateBtn = document.getElementById('celebrate-btn');
+    if (celebrateBtn) {
+      // function to animate the button and trigger celebration
+      const doAuto = () => {
+        try { celebrateBtn.classList.add('auto-animate'); } catch (e) {}
+        try { triggerCelebrate(); } catch (e) {}
+        setTimeout(() => { try { celebrateBtn.classList.remove('auto-animate'); } catch (e) {} }, 4000);
+      };
+
+      // start after 10s, then run in a loop every 10s
+      const startPeriodic = () => {
+        doAuto();
+        setInterval(doAuto, 10000);
+      };
+
+      setTimeout(startPeriodic, 10000);
+    }
+  } catch (e) {}
   // start photo slideshow for the birthday photo
   createBulbBorderIfFromPage4();
   initPhotoSlideshow();
@@ -457,7 +485,22 @@ function initFireworks() {
 
     explode() {
       for (let i = 0; i < 80; i++) {
-        particles.push(new Particle(this.x, this.y, this.color));
+          particles.push(new Particle(this.x, this.y, this.color));
+        }
+        // larger, richer explosion
+        const count = 120 + Math.floor(Math.random() * 80);
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle(this.x, this.y, this.color));
+        }
+        // small secondary mini-bursts
+        if (Math.random() < 0.35) {
+          const mini = 12 + Math.floor(Math.random() * 18);
+          for (let m = 0; m < mini; m++) {
+            const angle = Math.random() * Math.PI * 2;
+            const px = this.x + Math.cos(angle) * (10 + Math.random() * 20);
+            const py = this.y + Math.sin(angle) * (10 + Math.random() * 20);
+            particles.push(new Particle(px, py, '#ffffff'));
+          }
       }
     }
 
@@ -504,8 +547,10 @@ function initFireworks() {
     ctx.fillStyle = 'rgba(15, 12, 41, 0.15)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    if (Math.random() < 0.03) {
+    // slightly higher chance to launch fireworks and occasional paired launches
+    if (Math.random() < 0.06) {
       fireworks.push(new Firework());
+      if (Math.random() < 0.35) fireworks.push(new Firework());
     }
 
     for (let i = fireworks.length - 1; i >= 0; i--) {
@@ -529,4 +574,49 @@ function initFireworks() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
+
+  // Periodic paper-blast: small papers that burst outward every 10 seconds
+  function spawnPaperBlast() {
+    const count = 22 + Math.floor(Math.random() * 16);
+    const centerX = window.innerWidth * (0.45 + Math.random() * 0.1);
+    const centerY = window.innerHeight * (0.25 + Math.random() * 0.15);
+    const colors = ['#fff','#ffefc7','#ffd7f0','#e6f7ff','#fff7f0','#f0ffe6'];
+
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('div');
+      el.className = 'paper-piece';
+      const w = 6 + Math.random() * 14;
+      const h = 6 + Math.random() * 14;
+      el.style.width = w + 'px';
+      el.style.height = h + 'px';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.position = 'fixed';
+      el.style.left = centerX + (Math.random() * 40 - 20) + 'px';
+      el.style.top = centerY + (Math.random() * 30 - 15) + 'px';
+      el.style.zIndex = 9998;
+      el.style.opacity = '1';
+      el.style.borderRadius = (Math.random() < 0.2 ? '3px' : '0px');
+      el.style.transform = `rotate(${Math.random()*360}deg)`;
+      el.style.pointerEvents = 'none';
+      el.style.boxShadow = '0 2px 6px rgba(0,0,0,0.08)';
+      document.body.appendChild(el);
+
+      // animate outward
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 80 + Math.random() * 320;
+      const tx = Math.cos(angle) * dist + (Math.random()*40-20);
+      const ty = Math.sin(angle) * dist - (150 + Math.random() * 120);
+      const dur = 1400 + Math.random() * 1600;
+      el.style.transition = `transform ${dur}ms cubic-bezier(.17,.67,.36,1), opacity ${dur}ms ease-out`;
+      requestAnimationFrame(() => {
+        el.style.transform = `translate(${tx}px, ${ty}px) rotate(${Math.random()*720-360}deg) scale(${0.6+Math.random()*1.2})`;
+        el.style.opacity = '0';
+      });
+      setTimeout(() => el.remove(), dur + 80);
+    }
+  }
+
+  // first blast shortly after load, then every 10 seconds
+  setTimeout(spawnPaperBlast, 2800);
+  setInterval(spawnPaperBlast, 10000);
 }
