@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let opened = false;
 
   const messages = [
-    'Hey Sravya!',
+    'Hey Sravya,',
     'Happy Birthday 🎂✨',
-    'Keep smiling, keep dreaming, and keep being you.✨'
+    'Keep smiling, enjoy the little things, and always stay the wonderful person you are.🌷✨'
   ];
 
   // typing sound (place a short keyboard click sound at assets/sounds/typing.mp3)

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Stay awesome! ⭐',
     '🎈 More happy days are waiting for you! 🌸',
     'Party time! 🎉',
-    'Birthday queen! 👑'
+    'Birthday Girl! 👑'
   ];
 
   const colors = ['#ff6b9d', '#ffd700', '#a855f7', '#4facfe', '#fa709a', '#43e97b'];
@@ -235,6 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function revealGift() {
       if (revealed) return;
       revealed = true;
+      const revealPanel = document.querySelector('.scratch-reveal');
+      if (revealPanel) {
+        revealPanel.classList.add('revealed');
+      }
       canvas.style.opacity = '0';
       canvas.style.pointerEvents = 'none';
       launchConfettiBurst();
