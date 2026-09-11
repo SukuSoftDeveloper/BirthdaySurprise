@@ -181,12 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
           2
         );
       }
-
-      ctx.fillStyle = '#fff';
-      ctx.font = 'bold 18px Poppins, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('✨ Scratch Here! ✨', width / 2, height / 2);
     }
 
     resizeCanvas();
